@@ -1,0 +1,22 @@
+{
+  "name": "the-royal-chess",
+  "version": "1.0.0",
+  "description": "Premium Chess Game - A story-driven chess experience with emotions, powers, and magic for Dina & Ola",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000 --directory ."
+  },
+  "keywords": [
+    "chess",
+    "game",
+    "Dina",
+    "Ola",
+    "royal",
+    "powers"
+  ],
+  "author": "Royal Chess Dev",
+  "license": "MIT"
+}

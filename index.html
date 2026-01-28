@@ -1,0 +1,190 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>♔ Dina & Ola - The Royal Chess Experience ♕</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="startScreen" class="screen active">
+      <div class="start-container">
+        <div class="royal-header">
+          <div class="crown-icon">♔</div>
+          <h1>THE ROYAL CHESS</h1>
+          <div class="crown-icon">♕</div>
+        </div>
+
+        <div class="players-section">
+          <div class="player-card" id="playerDina" data-player="dina">
+            <div class="player-label">PLAYER 1</div>
+            <div class="player-name">Dina ♕</div>
+            <div class="player-color" id="dinaColor">?</div>
+          </div>
+
+          <div class="vs-text">VS</div>
+
+          <div class="player-card" id="playerOla" data-player="Ola">
+            <div class="player-label">PLAYER 2</div>
+            <div class="player-name">OLa ♔</div>
+            <div class="player-color" id="OlaColor">?</div>
+          </div>
+        </div>
+
+        <div class="time-selection">
+          <h3>SELECT TIME</h3>
+          <div class="time-buttons">
+            <button class="time-btn" data-time="5">5 MIN</button>
+            <button class="time-btn" data-time="10">10 MIN</button>
+            <button class="time-btn active" data-time="15">15 MIN</button>
+          </div>
+        </div>
+
+        <!-- Personality selection removed per user request -->
+
+        <button id="startBtn" class="btn-primary">START THE GAME</button>
+        <div class="debug-controls" style="margin-top: 12px"></div>
+      </div>
+    </div>
+
+    <div id="gameScreen" class="screen">
+      <div class="game-container">
+        <div class="game-header">
+          <div class="timer white-timer">
+            <div class="timer-label">DINA ♕</div>
+            <div class="timer-display" id="whiteTimer">15:00</div>
+            <div class="mood-indicator" id="whiteMood">🔥 Focused</div>
+          </div>
+
+          <div class="game-info">
+            <div class="turn-indicator" id="turnIndicator">WHITE TURN</div>
+            <button id="soundToggle" class="sound-toggle">🔊</button>
+          </div>
+
+          <div class="timer black-timer">
+            <div class="timer-label">OLA ♔</div>
+            <div class="timer-display" id="blackTimer">15:00</div>
+            <div class="mood-indicator" id="blackMood">😎 Calm</div>
+          </div>
+        </div>
+
+        <div class="main-game-area">
+          <div class="left-panel">
+            <div class="powers-section">
+              <h3>⚡ POWERS</h3>
+
+              <div class="energy-bar-container">
+                <div class="energy-label">ENERGY</div>
+                <div class="energy-bar">
+                  <div class="energy-fill" id="energyFill"></div>
+                  <div class="energy-count" id="energyCount">0 / 5</div>
+                </div>
+              </div>
+
+              <div class="powers-list">
+                <div class="power-item" data-power="queen-rush" data-cost="3">
+                  👑 Queen Rush
+                </div>
+                <div class="power-item" data-power="double-turn" data-cost="4">
+                  ⚡ Double Turn
+                </div>
+                <div class="power-item" data-power="teleport" data-cost="5">
+                  🌀 Teleport
+                </div>
+                <div class="power-item" data-power="shield" data-cost="2">
+                  🛡️ Shield
+                </div>
+              </div>
+
+              <button id="comboBtn" class="combo-btn">COMBO POWER</button>
+            </div>
+          </div>
+
+          <div class="center-area">
+            <div class="board-container">
+              <div id="chessBoard" class="chess-board"></div>
+              <div id="lastMoveIndicator" class="last-move"></div>
+            </div>
+
+            <div id="momentCard" class="moment-card hidden">
+              <div class="moment-content">
+                <div class="moment-icon">💌</div>
+                <div class="moment-text">Special Moment!</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-panel">
+            <div class="chat-section">
+              <h3>💬 CHAT</h3>
+              <div id="chatBox" class="chat-box"></div>
+
+              <div class="chat-input-section">
+                <input
+                  id="chatInput"
+                  type="text"
+                  placeholder="Say something..."
+                />
+                <button id="sendMsg">→</button>
+              </div>
+
+              <div class="emoji-reactions">
+                <button class="emoji-btn" data-emoji="❤️">❤️</button>
+                <button class="emoji-btn" data-emoji="🔥">🔥</button>
+                <button class="emoji-btn" data-emoji="😅">😅</button>
+                <button class="emoji-btn" data-emoji="♟️">♟️</button>
+              </div>
+            </div>
+
+            <div class="stats-section">
+              <h4>📊 DINA ♕ STATS</h4>
+              <div>Moves: <span id="whiteMoves">0</span></div>
+              <div>Captures: <span id="whiteCaptures">0</span></div>
+              <div>Powers: <span id="whitePowers">0</span></div>
+
+              <h4>📊 OLA ♔ STATS</h4>
+              <div>Moves: <span id="blackMoves">0</span></div>
+              <div>Captures: <span id="blackCaptures">0</span></div>
+              <div>Powers: <span id="blackPowers">0</span></div>
+            </div>
+
+            <button id="forfeitBtn" class="btn-secondary">FORFEIT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="endScreen" class="screen">
+      <div class="end-container">
+        <div id="endContent"></div>
+        <button id="rematchBtn" class="btn-primary">REMATCH</button>
+        <button id="settingsBtn" class="btn-secondary">SETTINGS</button>
+      </div>
+    </div>
+
+    <div id="promotionModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Pawn Promotion</h3>
+        <div class="promotion-options">
+          <button class="promotion-btn" data-piece="Q">♕ Queen</button>
+          <button class="promotion-btn" data-piece="R">♜ Rook</button>
+          <button class="promotion-btn" data-piece="B">♗ Bishop</button>
+          <button class="promotion-btn" data-piece="N">♞ Knight</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio Elements for Game Sounds -->
+    <audio id="moveSound" preload="auto" muted>
+      <source src="ficha-de-ajedrez-34722.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="captureSound" preload="auto" muted>
+      <source src="ficha-de-ajedrez-34722.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="powerSound" preload="auto" muted>
+      <source src="item-pick-up-38258.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
